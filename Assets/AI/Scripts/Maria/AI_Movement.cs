@@ -4,7 +4,7 @@ using UnityEngine;
 public class AI_Movement : MonoBehaviour
 {
     public event Action OnPositionReached = null;
-    [SerializeField] Vector3 targetPosition = Vector3.zero;
+    [SerializeField] Vector3 targetPosition = Vector3.one;
     [SerializeField, Range(0, 10)] float atPosRange = 2;
     [SerializeField, Range(0, 100)] float speed = 2;
 
@@ -22,13 +22,15 @@ public class AI_Movement : MonoBehaviour
 		}
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, _step);
         transform.LookAt(targetPosition);
+        Debug.LogError(targetPosition);
 	}
 
 
 	private void OnDrawGizmos()
 	{
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(targetPosition, .1f);
-	}
+        Gizmos.DrawWireSphere(targetPosition, 1f);
+        Debug.Log(targetPosition);
+    }
 
 }

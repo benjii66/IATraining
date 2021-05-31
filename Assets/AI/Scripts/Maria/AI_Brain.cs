@@ -72,7 +72,7 @@ public class AI_Brain : MonoBehaviour
 		{
 			fsm.SetBool("Follow_Pattern", true);
 			Debug.Log($"Non Detected :{fsm.GetBool("Follow_Pattern")}");
-			Debug.LogError("On pattern");
+			Debug.LogError("On pattern after the lost of the player");
 		};
 
 		movement.OnPositionReached += () =>
