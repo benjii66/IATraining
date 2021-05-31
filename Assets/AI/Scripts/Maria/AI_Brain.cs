@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AI_Brain : MonoBehaviour
 {
@@ -37,7 +35,7 @@ public class AI_Brain : MonoBehaviour
 
 	public AI_WaypointSystem Pattern => pattern;
 
-	public Helpers_Nommage StringHelpers => stringHelpers; 
+	public Helpers_Nommage StringHelpers => stringHelpers;
 
 	#endregion
 
@@ -54,7 +52,8 @@ public class AI_Brain : MonoBehaviour
 		GetAllComponents();
 		GetStatesComponents();
 		if (!fsm) return;
-
+		fsm.SetBool("Follow_Pattern", true);
+		
 		AI_States[] _states = fsm.GetBehaviours<AI_States>();
 		for (int i = 0; i < _states.Length; i++)
 			_states[i].InitState(this);		
@@ -64,16 +63,16 @@ public class AI_Brain : MonoBehaviour
 		detection.OnTargetDetected += (position) =>
 		{
 			movement.SetTarget(position);
-			Debug.Log($"position : {position}");
-			fsm.SetBool("Chase_Target", true);
 			fsm.SetBool("Follow_Pattern", false);
-			
+			Debug.Log($"Detected :{fsm.GetBool("Follow_Pattern")}");
+			Debug.LogError("plus de pattern");
 		};
 
 		detection.OnTargetLost += () =>
 		{
-			fsm.SetBool("Chase_Target", false);
 			fsm.SetBool("Follow_Pattern", true);
+			Debug.Log($"Non Detected :{fsm.GetBool("Follow_Pattern")}");
+			Debug.LogError("On pattern");
 		};
 
 		movement.OnPositionReached += () =>
@@ -87,7 +86,6 @@ public class AI_Brain : MonoBehaviour
 		movement = GetComponent<AI_Movement>();
 		detection = GetComponent<AI_Detection>();
 		pattern = GetComponent<AI_WaypointSystem>();
-		player = GetComponent<P_Player>();
 	}
 
 	void GetStatesComponents()
@@ -101,7 +99,6 @@ public class AI_Brain : MonoBehaviour
 	{
 		if (!IsValid) return;
 		detection.UpdateDetection();
-		Debug.Log(IsValid);
 	}
 
 }

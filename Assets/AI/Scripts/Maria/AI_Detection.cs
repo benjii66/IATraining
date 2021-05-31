@@ -36,15 +36,10 @@ public class AI_Detection : MonoBehaviour
 	{
         if (!IsValid) return;
         if (IsAtRange)
-        {
-            OnTargetDetected?.Invoke(target.position);
-            Debug.LogError("Detected");
-        }
+           OnTargetDetected?.Invoke(target.position);
         else
-        {
-            OnTargetLost?.Invoke();
-            Debug.LogError("Lost");
-        }
+             OnTargetLost?.Invoke();
+        
     }
 
 	private void Update()
@@ -67,9 +62,7 @@ public class AI_Detection : MonoBehaviour
             Gizmos.DrawLine(transform.position, target.position);
         }
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(target.position + Vector3.up, .2f);
+        Gizmos.DrawWireSphere(transform.position, detectionRange);        
 	}
 
 }

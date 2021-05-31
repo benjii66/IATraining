@@ -10,12 +10,12 @@ public class AI_PatternState : AI_States
 		OnEnter += () =>
 		{
 			brain.Movement.SetTarget(brain.Pattern.PickPoint());
-			//entre pas de suite dedans
-
+			Debug.LogError("je sette la target");
 		};
 		OnUpdate += () =>
 		{
 			brain.Movement.MoveTo();
+			Debug.LogError("Petit move To");
 			//il bouge quand il faut
 		};
 	}

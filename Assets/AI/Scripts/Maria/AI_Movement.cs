@@ -20,9 +20,6 @@ public class AI_Movement : MonoBehaviour
             OnPositionReached?.Invoke();
             return;
 		}
-
-        Debug.LogWarning($"Je dois bouger vers la target : {targetPosition}");
-        Debug.Log($"Is at Pos : {IsAtPos}");
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, _step);
         transform.LookAt(targetPosition);
 	}

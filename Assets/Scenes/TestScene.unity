@@ -1145,6 +1145,11 @@ PrefabInstance:
       propertyPath: stringHelpers
       value: 
       objectReference: {fileID: 1813938647}
+    - target: {fileID: 1172423041623074543, guid: 418ebb81bf61ac341b3e5c94300bcabf,
+        type: 3}
+      propertyPath: bipbip
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1715856022264889625, guid: 418ebb81bf61ac341b3e5c94300bcabf,
         type: 3}
       propertyPath: m_LocalPosition.x
