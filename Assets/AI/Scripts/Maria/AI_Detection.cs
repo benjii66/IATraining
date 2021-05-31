@@ -49,10 +49,6 @@ public class AI_Detection : MonoBehaviour
 
 	private void Update()
 	{
-            //target position est ok
-           //c'est valide
-          //pourquoi ça call le range qu'une fois debuggé ?
-
         UpdateDetection();
     }
 
