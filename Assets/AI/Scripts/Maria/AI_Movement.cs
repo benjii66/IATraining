@@ -12,6 +12,8 @@ public class AI_Movement : MonoBehaviour
 
     public void SetTarget(Vector3 _target) => targetPosition = _target;
 
+    public Vector3 TargetPosition => targetPosition;
+
     public void MoveTo()
 	{
         float _step = speed * Time.deltaTime;
@@ -22,15 +24,14 @@ public class AI_Movement : MonoBehaviour
 		}
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, _step);
         transform.LookAt(targetPosition);
-        Debug.LogError(targetPosition);
 	}
 
+    public void AddSpeed(float _speed) => speed += _speed;
 
 	private void OnDrawGizmos()
 	{
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(targetPosition, 1f);
-        Debug.Log(targetPosition);
     }
 
 }
