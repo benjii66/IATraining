@@ -47,8 +47,6 @@ public class AI_Brain : MonoBehaviour
 
 	private void Update() => UpdateBrain();
 
-
-
 	void InitFSM()
 	{
 		GetAllComponents();
