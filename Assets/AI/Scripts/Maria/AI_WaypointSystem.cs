@@ -19,7 +19,6 @@ public class AI_WaypointSystem : MonoBehaviour
 	public void AddPoint()
 	{
 		Vector3 _point = wayPoint.Count == 0 ? Vector3.zero : wayPoint[wayPoint.Count - 1] + Vector3.forward;
-		Debug.Log($"Ajout au point : {_point}");
 		wayPoint.Add(_point);
 	}
 

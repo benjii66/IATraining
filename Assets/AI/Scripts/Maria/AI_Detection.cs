@@ -39,13 +39,10 @@ public class AI_Detection : MonoBehaviour
 			OnTargetDetected?.Invoke(target.position);
 		else
 			OnTargetLost?.Invoke();
-
 	}
 
-	private void Update()
-	{
-		UpdateDetection();
-	}
+	private void Update() => UpdateDetection();
+	
 
 	private void OnDestroy()
 	{

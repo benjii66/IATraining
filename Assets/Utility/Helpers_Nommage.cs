@@ -8,10 +8,12 @@ public class Helpers_Nommage : MonoBehaviour
     [SerializeField] string wait = "Wait";
     [SerializeField] string chaseParameter = "Chase_Target";
     [SerializeField] string patternParameter = "Follow_Pattern";
+    [SerializeField] string searchParameter = "Search";
 
     public string WaitTimer => waitTimer;
     public string Wait=> wait;
     public string ChaseParameter => chaseParameter;
     public string PatternParameter => patternParameter;
+    public string SearchParameter => searchParameter;
 
 }
