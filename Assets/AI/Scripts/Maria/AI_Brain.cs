@@ -13,7 +13,6 @@ public class AI_Brain : MonoBehaviour
 	[SerializeField] P_Player player = null;
 	[SerializeField] AI_Statistiques statistiques = new AI_Statistiques();
 
-
 	[Header("Parameters")]
 	[SerializeField] Helpers_Nommage stringHelpers = null;
 	[SerializeField] bool hasChased = false;
@@ -24,13 +23,11 @@ public class AI_Brain : MonoBehaviour
 	[SerializeField] AI_WaitState waitState = null;
 	[SerializeField] AI_InvestigateState investigateState = null;
 
-
 	#endregion
-
-	public bool IsValid => fsm && movement && detection && pattern && player && chaseState && patternState && waitState && investigateState;
 
 	#region Accessors
 
+	public bool IsValid => fsm && movement && detection && pattern && player && chaseState && patternState && waitState && investigateState;
 	public Animator FSM => fsm;
 	public AI_Movement Movement => movement;
 	public AI_Detection Detection => detection;
@@ -42,10 +39,14 @@ public class AI_Brain : MonoBehaviour
 
 	#endregion
 
+	#region Unity Methods
 
 	void Start() => InitFSM();
+	private void Update() => UpdateBrain(); 
 
-	private void Update() => UpdateBrain();
+	#endregion
+
+	#region Personnal Methods
 
 	void InitFSM()
 	{
@@ -61,13 +62,16 @@ public class AI_Brain : MonoBehaviour
 		if (!IsValid) return;
 
 		DetectionEvent();
-		movement.OnPositionReached += () =>	fsm.SetBool(stringHelpers.Wait, true);		
+		movement.OnPositionReached += () => fsm.SetBool(stringHelpers.Wait, true);
 	}
+
+	#region Target
+
 	void DetectionEvent()
 	{
 		detection.OnTargetDetected += (position) => TargetDetected(position);
 		detection.OnTargetLost += () => TargetLost();
-	}		
+	}
 	void TargetDetected(Vector3 _position)
 	{
 		movement.SetTarget(_position);
@@ -85,14 +89,20 @@ public class AI_Brain : MonoBehaviour
 			investigate.SetGizmo(true);
 			fsm.SetBool("Search", true);
 		}
-		
+
 		if (statistiques.AINeedReset)
 		{
+			hasChased = false;
 			fsm.SetBool("Search", false);
 			fsm.SetBool(stringHelpers.PatternParameter, true);
 			investigate.SetGizmo(false);
 		}
 	}
+
+	#endregion
+
+	#region Getters
+
 	void GetAllComponents()
 	{
 		movement = GetComponent<AI_Movement>();
@@ -106,10 +116,15 @@ public class AI_Brain : MonoBehaviour
 		waitState = fsm.GetBehaviour<AI_WaitState>();
 		patternState = fsm.GetBehaviour<AI_PatternState>();
 		investigateState = fsm.GetBehaviour<AI_InvestigateState>();
-	}
+	} 
+
+	#endregion
+
 	void UpdateBrain()
 	{
 		if (!IsValid) return;
 		detection.UpdateDetection();
-	}
+	} 
+
+	#endregion
 }
