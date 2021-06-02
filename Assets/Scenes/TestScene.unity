@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosition: {x: 1, y: 1, z: 1}
   atPosRange: 0.1
-  speed: 2
+  speed: 1
 --- !u!114 &473265169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,8 +432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   investigationRadius: 5
   investigationRadiusColor: {r: 0, g: 0.7118623, b: 0.745283, a: 1}
-  player: {fileID: 1644078371}
-  isPlayerSet: 0
   allowGizmos: 0
 --- !u!1 &505855222
 GameObject:

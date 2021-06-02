@@ -45,6 +45,7 @@ public class AI_BrainEditor : Editor
 		GUILayout.Toggle(brain.FSM.GetBool("Search"), "Search Bool");
 		GUILayout.Toggle(brain.FSM.GetBool("Follow_Pattern"), "Pattern Bool");
 		GUILayout.Toggle(brain.FSM.GetBool("Chase_Target"), "Chase Bool");
+		GUILayout.Toggle(brain.Investigate.AllowGizmos, "Allow Gizmos");
 		GUILayout.Label($"Waiting Time : {brain.FSM.GetFloat("Wait_Timer").ToString()}");
 		GUILayout.Label($"Target : {brain.Movement.TargetPosition.ToString()}");
 	}

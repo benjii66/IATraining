@@ -57,6 +57,7 @@ public class AI_Detection : MonoBehaviour
 			OnTargetLost?.Invoke();
 	}
 
+	public void AddRange(int _range) => detectionRange += _range;
 
 	private void OnDrawGizmos()
 	{

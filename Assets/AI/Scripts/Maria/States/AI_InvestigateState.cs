@@ -6,7 +6,10 @@ public class AI_InvestigateState : AI_States
 	{
 		base.InitState(_brain);
 		OnEnter += () => Investigation();
-		OnUpdate += () => brain.Movement.MoveTo();
+		OnUpdate += () =>
+		{			
+			brain.Movement.MoveTo();
+		};
 		OnExit += () => Reset();
 	}
 
@@ -24,10 +27,10 @@ public class AI_InvestigateState : AI_States
 		{
 			((AI_Brain)brain).Investigate.AddRange(brain.Statistiques.Stress);
 			brain.Movement.AddSpeed((float)brain.Statistiques.Stress);
+			brain.Detection.AddRange(brain.Statistiques.Stress);
 			brain.Statistiques.AddFail();
 			brain.Statistiques.ResetStats();
 			brain.FSM.SetBool("Search", false);
-			brain.Investigate.SetPlayerSet(false);
 		}
 	} 
 

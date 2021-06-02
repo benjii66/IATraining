@@ -75,6 +75,7 @@ public class AI_Brain : MonoBehaviour
 	void TargetDetected(Vector3 _position)
 	{
 		movement.SetTarget(_position);
+		investigate.SetLastSeenTarget(_position);
 		fsm.SetBool(stringHelpers.ChaseParameter, true);
 		fsm.SetBool(stringHelpers.PatternParameter, false);
 		hasChased = true;

@@ -8,8 +8,6 @@ public class AI_Investigate : MonoBehaviour
 
 	[SerializeField, Range(1, 10)] float investigationRadius = 5;
 	[SerializeField] Color investigationRadiusColor = Color.white;
-	[SerializeField] Transform player = null;
-	[SerializeField] bool isPlayerSet = false;
 	[SerializeField] bool allowGizmos = true;
 
 	List<Vector3> historicPoints = new List<Vector3>();
@@ -18,7 +16,7 @@ public class AI_Investigate : MonoBehaviour
 
 	#endregion
 
-	public bool IsPlayerSet => isPlayerSet;	
+	public bool AllowGizmos => allowGizmos;
 
 	#region Methods
 
@@ -28,17 +26,11 @@ public class AI_Investigate : MonoBehaviour
 		historicPoints.Clear();
 		investigationStartPosition = _lastPoint;
 	}
-	public bool SetPlayerSet(bool _value) => isPlayerSet = _value;
 	public bool SetGizmo(bool _value) => allowGizmos = _value;
 	public void SetRadiusMultiplicator(float _multiplicator) => investigationRadius = initRadius * _multiplicator;
 	public void AddRange(int _value) => investigationRadius += _value;
 	public Vector3 GetInvestigationPoint()
-	{
-		if (!isPlayerSet)
-		{
-			investigationStartPosition = player.position;
-			isPlayerSet = true;
-		}
+	{		
 		InvestigationPoint();
 		return investigationPoint;
 	} 
@@ -67,12 +59,12 @@ public class AI_Investigate : MonoBehaviour
 				SphericInvestigation(i);
 		}
 	}
-
 	void InvestigationGizmos()
 	{
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawWireCube(investigationStartPosition, Vector3.one);
 		Gizmos.DrawLine(transform.position, investigationStartPosition);
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(investigationStartPosition, Vector3.one);
 		Gizmos.color = investigationRadiusColor;
 		Gizmos.DrawWireSphere(investigationStartPosition, investigationRadius);
 		Gizmos.color = Color.yellow;
